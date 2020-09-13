@@ -1,6 +1,10 @@
-import * as React from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Index() {
-  return <>详情</>
+  return <>
+    <p>详情</p>
+    <Link to='/'>首页</Link>
+  </>
 }
 export default Index;
