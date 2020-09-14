@@ -1,11 +1,11 @@
 import React from 'react';
 
-import RouterConfig from '@/router/index.tsx';
+import RouterIndex from '@/router';
 
 function App() {
   return (
     <>
-      <RouterConfig></RouterConfig>
+      <RouterIndex></RouterIndex>
     </>
   );
 
