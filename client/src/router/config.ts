@@ -1,6 +1,6 @@
 import React from 'react';
 
-import HomePage from '@/pages/HomePage.tsx';
+import Index from '@/pages/home/index.tsx';
 import AboutPage from '@/pages/AboutPage.tsx';
 import DetailPage from '@/pages/DetailPage.tsx';
 
@@ -12,7 +12,7 @@ const DetailPage = React.lazy(() => import('@/pages/DetailPage.tsx')); */
 const RoutesConfig = [
   {
     path: '/', 
-    component: HomePage
+    component: Index
   },
   {
     path: '/about', 
