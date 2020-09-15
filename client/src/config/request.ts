@@ -2,28 +2,31 @@ import axios from 'axios';
 
 import { Toast } from 'antd-mobile';
 
-import DOMAIN from './apiDomain.ts';
+import DOMAIN from './apiDomain';
 
 axios.defaults.baseURL = 'https://api.example.com';
 
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
-export default function request(params) {
+export default function request(config) {
   const {
-    method,
+    method='get',
     url,
     data,
+    params,
     headers
-  } = params;
+  } = config;
   return new Promise((reslove, reject) => {
     axios({
       method,
       url: DOMAIN + url,
       data,
-      headers
+      params,
+      headers,
+      timeout: 8000
     }).then((data) => {
-      data = data.data;
-      const { code } = data;
+      const result = data.data;
+      /* const { code } = result;
       // 正常业务
       if(code===0) {
         reslove(data);
@@ -32,7 +35,7 @@ export default function request(params) {
         window.location.href = '/login';
       } else {
         reject(data);
-      }
+      } */
     }).catch((err) => {
       Toast.fail('服务端异常，请稍后再试');
       reject(data);

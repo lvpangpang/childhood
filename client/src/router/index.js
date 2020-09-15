@@ -12,7 +12,7 @@ import {
 } from 'react-transition-group';
 
 import './index.less';
-import RouterConfig from './config.ts';
+import RouterConfig from './config';
 
 const ANIMATION_MAP = {
   PUSH: 'forward',
