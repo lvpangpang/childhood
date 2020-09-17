@@ -1,26 +1,24 @@
 const isPro = process.env.NODE_ENV === 'production';
 
 const MYSQLDEV = {
-  host: '127.0.0.1',
+  host: 'localhost',
   user: 'root',
-  password: '123456',
-  database: 'mytest',
-  port: 3306
+  password: '123',
+  database: 'childhood',
+  port: '3306'
 };
 
 const MYSQLPRO = {
   host: '116.62.139.102',
   user: 'root',
   password: '123456',
-  database: 'mytest',
+  database: 'childhood',
   port: 3306
 };
 
-let mysql = MYSQLDEV;
+let mysqlConfig = MYSQLDEV;
 if(isPro) {
-  mysql = MYSQLPRO;
+  mysqlConfig = MYSQLPRO;
 }
 
-module.exports = {
-  mysql
-};
+module.exports = mysqlConfig;
