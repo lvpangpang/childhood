@@ -9,6 +9,7 @@ const bodyParse = require('./core/http.js');
 const log = require('./core/log.js');
 
 const userRoute = require('./routes/user.js');
+const babyRoute = require('./routes/baby.js');
 
 app.use(bodyParse.urlencoded);
 app.use(express.static('public'));
@@ -27,11 +28,13 @@ app.all('*',function (req, res, next) {
   }
 });
 
-app.use('/', (req, res) => {
-  res.send('吕肥肥的小时光');
-});
+// app.use('/', (req, res) => {
+//   res.send('吕肥肥的小时光');
+// });
 
 app.use('/user', userRoute);
+app.use('/baby', babyRoute);
+
 
 app.listen(3000, () => {
   console.log('吕肥肥的小时光启动了');

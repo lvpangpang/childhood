@@ -1,5 +1,10 @@
 const { query } = require('../core/mysql.js');
 
+// baby表
+query('CREATE TABLE baby (babyId INT NOT NULL auto_increment primary key, name VARCHAR(15), days INT, createTime datetime, userId INT, head VARCHAR(255))').then(() => {
+  console.log('创建baby表成功');
+});
+
 // 用户表
 query('CREATE TABLE user (userId INT NOT NULL auto_increment primary key, name VARCHAR(255), age INT(3), city VARCHAR(255))').then(() => {
   console.log('创建user表成功');
