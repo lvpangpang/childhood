@@ -1,6 +1,6 @@
 import React from 'react';
-import Style from './index.less';
-console.log(Style);
+import './index.less';
+
 
 interface Prop {
   name: string,
@@ -13,7 +13,7 @@ function Header(prop: Prop) {
     right
   } = prop;
   return (
-    <div class={Style.header}>
+    <div className='header'>
       <div></div>
       <div>{name}</div>
       <div>{right}</div>
