@@ -1,3 +1,4 @@
 export default {
-  getBaby: '/baby/get'
+  getBaby: '/baby/get',
+  upload: '/upload'
 };

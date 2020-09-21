@@ -10,9 +10,10 @@ const log = require('./core/log.js');
 
 const userRoute = require('./routes/user.js');
 const babyRoute = require('./routes/baby.js');
+const uploadRoute = require('./routes/upload.js');
 
 app.use(bodyParse.urlencoded);
-app.use(express.static('public'));
+app.use(express.static('upload'));
 app.use(log);
 
 //解决跨域
@@ -34,7 +35,7 @@ app.all('*',function (req, res, next) {
 
 app.use('/user', userRoute);
 app.use('/baby', babyRoute);
-
+app.use('/file', uploadRoute);
 
 app.listen(3000, () => {
   console.log('吕肥肥的小时光启动了');

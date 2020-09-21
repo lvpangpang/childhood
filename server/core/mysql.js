@@ -7,7 +7,6 @@ connection.connect();
 
 function query(sql) {
   return new Promise((reslove, reject) => {
-    console.log(sql);
     connection.query(sql, function (err, data) {
       if (err) {
         reject(err);

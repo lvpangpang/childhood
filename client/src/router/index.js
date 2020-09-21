@@ -49,11 +49,11 @@ export default function Index() {
   return (
     <BrowserRouter>
       <Routes/>
-      <div className='navition-box'>
+      {/* <div className='navition-box'>
         <Link to='/'>小家</Link>
         <Link to='/detail'>消息</Link>
         <Link to='/my'>我的</Link>
-      </div>
+      </div> */}
     </BrowserRouter>
   );
 }
