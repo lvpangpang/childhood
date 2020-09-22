@@ -27,16 +27,5 @@ router.use('/upload', multer({dest: './upload/temp'}).single('file'),
   });
 });
 
-router.use('/submit', async (req, res, next) => {
-  const { fileList } = req.body;
-  const sql = `insert into`;
-  const data = await handleRes(sql, res);
-  res.json({
-    code: 0,
-    data: data[0]
-  });
-});
-
-
 module.exports = router;
 

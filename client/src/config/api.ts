@@ -1,4 +1,6 @@
 export default {
-  getBaby: '/baby/get',
-  upload: '/upload'
+  login: '/login',
+  getUser: '/user/get',
+  upload: '/file/upload',
+  dailyAdd: '/daily/add'
 };

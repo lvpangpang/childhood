@@ -6,15 +6,12 @@ import DOMAIN from '@/config/apiDomain';
 
 axios.defaults.baseURL = DOMAIN();
 
-// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-
 export default function request(config) {
   const {
     method='get',
     url,
     data,
     params,
-    headers
   } = config;
   return new Promise((reslove, reject) => {
     axios({
@@ -22,7 +19,9 @@ export default function request(config) {
       url: url,
       data,
       params,
-      headers,
+      headers: {
+        xToken: localStorage.getItem('xToken')
+      },
       timeout: 8000
     }).then((data) => {
       const result = data.data;
@@ -35,6 +34,7 @@ export default function request(config) {
       } else if (code===10) {
         window.location.href = '/login';
       } else {
+        Toast.fail(result.data.msg);
         reject(result);
       }
     }).catch((err) => {

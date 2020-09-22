@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import request from '@/untils/request';
 import API from '@/config/api';
 import './index.less';
-import { Button } from 'antd-mobile';
+import { Button, Toast } from 'antd-mobile';
 import Item from 'antd-mobile/lib/popover/Item';
 
 interface Prop {
@@ -47,8 +47,18 @@ function Upload(prop: Prop) {
     setFileList(temp);
   };
 
-  const submit = () => {
-    
+  const submit = async () => {
+    setLoading(true);
+    const data = await request({
+      method: 'post',
+      url: API.dailyAdd,
+      data: {
+        fileList: JSON.stringify(fileList)
+      }
+    });
+    Toast.success('添加成功');
+    setLoading(false);
+    cancelHandle();
   };
 
   return (
@@ -69,7 +79,7 @@ function Upload(prop: Prop) {
             </div>
           })
         }</div>
-        <Button type='primary' className='button' loading={loading}>发布</Button>
+        <Button type='primary' className='button' loading={loading} onClick={submit}>发布</Button>
       </div>
       }
     </div>

@@ -11,4 +11,14 @@ router.use('/add', async (req, res, next) => {
   });
 });
 
+router.use('/get', async (req, res, next) => {
+  const { userId } = req.query;
+  const sql = `select * from user where userId='${userId}'`;
+  const data = await handleRes(sql, res);
+  res.json({
+    code: 0,
+    data: data[0]
+  });
+});
+
 module.exports = router;

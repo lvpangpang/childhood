@@ -2,6 +2,8 @@ import React from 'react';
 
 import Index from '@/pages/home';
 import Detail from '@/pages/detail';
+import Login from '@/pages/login';
+
 
 const RoutesConfig = [
   {
@@ -11,6 +13,10 @@ const RoutesConfig = [
   {
     path: '/detail', 
     component: Detail
+  },
+  {
+    path: '/login', 
+    component: Login
   }
 ];
 
