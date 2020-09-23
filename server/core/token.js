@@ -6,21 +6,19 @@ const setToken = (userName, userId) => {
     const token = jwt.sign({
       userName,
       userId
-    }, jwtScrect, {expiresIn: '24h'});
-    resolve(token)
+    }, jwtScrect, {expiresIn: 60 * 60 * 24 }); // 单位为秒 token有效期设置为24h
+    resolve(token);
   })
 };
 
 const getTokenData = (token) => {
-  console.log(token)
   return new Promise((resolve, reject) => {
-    if(!token) {
-      reject({err: 'token是空的'})
-    } else {
-      const info = jwt.verify(token.split('.')[1], jwtScrect);
-      console.log(info)
-      resolve(info);
-    }
+    jwt.verify(token, jwtScrect, (err, data) => {
+      if(err) {
+        rejext(err);
+      }
+      resolve(data);
+    });
   });
 };
 
