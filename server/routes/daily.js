@@ -14,15 +14,19 @@ router.use('/add', async (req, res, next) => {
   });
 });
 
-router.use('/get', async (req, res, next) => {
-  const sql = `select * from daily`;
+router.use('/list', async (req, res, next) => {
+  const {
+    pageIndex=1,
+    pageSize=2
+  } = req.query;
+  const sql = `select * from daily limit ${(pageIndex-1) * pageSize}, ${pageSize}`;
+  console.log(sql)
   const data = await handleRes(sql, res);
   res.json({
     code: 0,
     data: data
   });
 });
-
 
 module.exports = router;
 

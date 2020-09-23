@@ -14,15 +14,16 @@ function guid() {
 
 router.use('/upload', multer({dest: './upload/temp'}).single('file'),
 (req, res, next) => {
+  console.log(req.file);
   const domain = req['headers']['host'];
   const file = req.file;
-  const fileName = file.mimetype.slice(file.mimetype.indexOf('/') + 1);
+  const fileType = file.mimetype.slice(file.mimetype.indexOf('/') + 1);
   const uuid = guid();
-  fs.renameSync(`./upload/temp/${file.filename}`, `./upload/file/${uuid + '.' + fileName}`);
+  fs.renameSync(`./upload/temp/${file.filename}`, `./upload/file/${uuid + '.' + fileType}`);
   res.json({
     code: 0,
     data: {
-      url: 'http://' + domain + `/file/${uuid + '.' + fileName}`
+      url: 'http://' + domain + `/file/${uuid + '.' + fileType}`
     }
   });
 });
