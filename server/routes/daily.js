@@ -30,8 +30,8 @@ router.use('/list', async (req, res, next) => {
   res.json({
     code: 0,
     data: {
-      pageIndex: pageIndex,
-      pageSize: pageSize,
+      pageIndex: parseInt(pageIndex),
+      pageSize: parseInt(pageSize),
       total: total[0]['count(*)'],
       list: data
     }
