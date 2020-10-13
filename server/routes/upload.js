@@ -14,7 +14,6 @@ function guid() {
 
 router.use('/upload', multer({dest: './upload/temp'}).single('file'),
 (req, res, next) => {
-  console.log(req.file);
   const domain = req['headers']['host'];
   const file = req.file;
   const fileType = file.mimetype.slice(file.mimetype.indexOf('/') + 1);
@@ -23,7 +22,8 @@ router.use('/upload', multer({dest: './upload/temp'}).single('file'),
   res.json({
     code: 0,
     data: {
-      url: 'http://' + domain + `/file/${uuid + '.' + fileType}`
+      tempUrl: 'http://' + domain + `/file/${uuid + '.' + fileType}`,
+      url: `/file/${uuid + '.' + fileType}`
     }
   });
 });

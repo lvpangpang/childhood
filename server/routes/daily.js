@@ -19,12 +19,17 @@ router.use('/list', async (req, res, next) => {
     pageIndex=1,
     pageSize=2
   } = req.query;
+  const domain = req['headers']['host'];
   const sql = `select dailyId, name, fileList, createTime from daily inner join user on daily.userId = user.userId order by createTime desc limit ${(pageIndex-1) * pageSize}, ${pageSize}`;
   const sqlCount = `select count(*) from daily`;
   const data = await handleRes(sql, res);
   const total = await handleRes(sqlCount, res);
   data.forEach((item) => {
-    item.fileList = JSON.parse(item.fileList);
+    let fileList = JSON.parse(item.fileList);
+    fileList.forEach((item) => {
+      item.url = 'http://' + domain + item.url; 
+    });
+    item.fileList = fileList;
     item.createTime = sd.format(item.createTime);
   });
   res.json({
