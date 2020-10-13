@@ -33,7 +33,7 @@ function Upload(prop: Prop) {
             url: API.upload,
             data: formData
           });
-          res.push(data)
+          res.push(data);
         } catch(err) {
           setLoading(false);
         }
@@ -58,6 +58,9 @@ function Upload(prop: Prop) {
 
   const submit = async () => {
     setLoading(true);
+    fileList && fileList.forEach((item) => {
+      delete item.tempUrl;
+    });
     const data = await request({
       method: 'post',
       url: API.dailyAdd,
@@ -83,8 +86,8 @@ function Upload(prop: Prop) {
       </Button> : <div className='publish-box'>
         <div className='file-list'>{
           fileList.map((item, index) => {
-            return <div className='upload-item' key={item.url}>
-              <img src={item.url}></img>
+            return <div className='upload-item' key={item.tempUrl}>
+              <img src={item.tempUrl}></img>
               <p onClick={() => {del(index)}}>删除</p>
             </div>
           })

@@ -21,18 +21,18 @@ const ANIMATION_MAP = {
 }
 
 const Routes = withRouter(({location, history}) => (
-  <TransitionGroup
-    id='wrapper'
-    className={'router-wrapper-box'}
-    childFactory={child => React.cloneElement(
-      child,
-      {classNames: ANIMATION_MAP[history.action]}
-    )}
-  >
-    <CSSTransition
-      timeout={500}
-      key={location.pathname}
-    >
+  // <TransitionGroup
+  //   id='wrapper'
+  //   className={'router-wrapper-box'}
+  //   childFactory={child => React.cloneElement(
+  //     child,
+  //     {classNames: ANIMATION_MAP[history.action]}
+  //   )}
+  // >
+  //   <CSSTransition
+  //     timeout={500}
+  //     key={location.pathname}
+  //   >
       <Switch location={location}>
         {
           RouterConfig.map((item) => {
@@ -42,19 +42,14 @@ const Routes = withRouter(({location, history}) => (
           })
         }
       </Switch>
-    </CSSTransition>
-  </TransitionGroup>
+  //   </CSSTransition>
+  // </TransitionGroup>
 ));
 
 export default function Index() {
   return (
     <BrowserRouter>
       <Routes/>
-      {/* <div className='navition-box'>
-        <Link to='/'>小家</Link>
-        <Link to='/detail'>消息</Link>
-        <Link to='/my'>我的</Link>
-      </div> */}
     </BrowserRouter>
   );
 }

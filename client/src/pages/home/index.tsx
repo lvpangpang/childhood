@@ -15,11 +15,6 @@ function Index(props) {
   const [showUpload, setShowUpload] = useState(false);
   const [data, setData] = useState([]);
 
-  const daysToMonth = useCallback((days) => {
-    return days>30 ? Math.floor(days/30) + '个月' + days % 30 + '天' : days + '天';
-
-  }, []);
-
   const getData = useCallback(async() => {
     const data = await request({
       url: API.getUser,
@@ -47,9 +42,6 @@ function Index(props) {
   useEffect(() => {
     getData();
     getList();
-    document.querySelector('#wrapper').addEventListener('scroll', function() {
-      console.log(123);
-    }, false)
   }, []);
   
 
