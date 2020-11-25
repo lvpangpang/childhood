@@ -8,6 +8,7 @@ export function getList() {
       url: API.dailyList,
       params: {
         pageIndex: pageIndex,
+        pageSize: 100
       }
     });
     dispatch({

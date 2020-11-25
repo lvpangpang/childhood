@@ -11,8 +11,9 @@ import Header from '@/components/Header';
 import Upload from './Upload';
 import './index.less';
 
-function Index(props) {
+let isFirst = 0;
 
+function Index(props) {
   const { 
     list
   } = useSelector((state) => {
@@ -36,7 +37,16 @@ function Index(props) {
 
   useEffect(() => {
     getData();
-    dispath(homeAction.getList())
+    if(isFirst===0) {
+      isFirst=1;
+      dispath(homeAction.getList())
+    } else {
+      window.scrollTo(0, parseFloat(sessionStorage.getItem('scrollTop')));
+    }
+
+    return () => {
+      sessionStorage.setItem('scrollTop', (document.body.scrollTop || document.documentElement.scrollTop) + '')
+    }
   }, []);
   
   return (
@@ -80,7 +90,7 @@ function Index(props) {
       </div>
 
       {
-        showUpload && <Upload cancelHandle={() => {setShowUpload(false)}} successHanlde={getList}></Upload>
+        showUpload && <Upload cancelHandle={() => {setShowUpload(false)}} successHanlde={homeAction.getList}></Upload>
       }
     </div>
   )
