@@ -1,19 +1,28 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
+import { Icon } from 'antd-mobile';
+
+import * as homeAction from '@/store/action/home';
 import request from '@/untils/request';
 import API from '@/config/api';
-import './index.less';
-
-import Header from '@/common/Header';
+import Header from '@/components/Header';
 import Upload from './Upload';
-import { Toast } from 'antd-mobile';
+import './index.less';
 
 function Index(props) {
 
+  const { 
+    list
+  } = useSelector((state) => {
+    return state.home
+  });
+
+  const dispath = useDispatch();
+
   const [baby, setBaby] = useState({});
   const [showUpload, setShowUpload] = useState(false);
-  const [data, setData] = useState([]);
 
   const getData = useCallback(async() => {
     const data = await request({
@@ -25,25 +34,11 @@ function Index(props) {
     setBaby(data);
   }, []);
 
-  const getList = useCallback(async() => {
-    Toast.loading('数据加载中');
-    const data = await request({
-      url: API.dailyList,
-      params: {
-        pageIndex: 1,
-        pageSize: 10
-      }
-    });
-    setData(data['list']);
-    Toast.hide();
-  }, []);
-
   useEffect(() => {
     getData();
-    getList();
+    dispath(homeAction.getList())
   }, []);
   
-
   return (
     <div className='home-box'>
       <Header 
@@ -61,7 +56,7 @@ function Index(props) {
       </div>
       <div className='content-box' id='contentBox'>
         {
-          data.map((item) => {
+          list.map((item) => {
             return <div className='file-item' key={item['dailyId']}>
               <div className='time'>{item['name']} {item['createTime']}</div>
               <Link to='/detail'>
@@ -78,7 +73,10 @@ function Index(props) {
             </div>
           })
         }
-        <div id='loading'>loading</div>
+        <div className='loading'>
+          <Icon type='loading'></Icon>
+          <span>加载中...</span>
+        </div>
       </div>
 
       {

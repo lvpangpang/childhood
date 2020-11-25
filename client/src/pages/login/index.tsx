@@ -32,5 +32,4 @@ function login(prop) {
     </div>
   );
 }
-
 export default login;

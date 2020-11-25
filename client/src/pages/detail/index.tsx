@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Button } from 'antd-mobile';
 
-import Header from '@/common/Header';
+import Header from '@/components/Header';
 import './index.less';
 
 function Index(props) {
