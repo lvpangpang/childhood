@@ -26,9 +26,11 @@ function login(prop) {
 
   return (
     <div className='login-box'>
-      <InputItem placeholder='请输入用户名'  className='input' value={userName} onChange={(value)=>{setUserName(value)}}></InputItem>
-      <InputItem type='password' placeholder='请输入密码' value={pwd} className='input' onChange={(value) => {setPwd(value)}}></InputItem>
-      <Button type='primary' className='btn' onClick={goLogin}>打开新世界</Button>
+      <div className='input-box'>
+        <InputItem placeholder='请输入用户名'  className='input' value={userName} onChange={(value)=>{setUserName(value)}}></InputItem>
+        <InputItem type='password' placeholder='请输入密码' value={pwd} className='input' onChange={(value) => {setPwd(value)}}></InputItem>
+        <Button type='primary' className='btn' onClick={goLogin}>打开新世界</Button>
+      </div>
     </div>
   );
 }

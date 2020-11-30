@@ -7,10 +7,12 @@ import Login from '@/pages/login';
 const RoutesConfig = [
   {
     path: '/', 
+    auth: true,
     component: Index
   },
   {
     path: '/detail', 
+    auth: true,
     component: Detail
   },
   {
