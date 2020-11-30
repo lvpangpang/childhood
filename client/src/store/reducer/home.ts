@@ -1,15 +1,18 @@
 const initialState = {
   pageIndex: 1,
   pageSize: 10,
+  hasMore: true,
   list: []
 }
 
 const reducerMap = {
-  'getList': (state, action) => {
+  getList: (state, action) => {
     const  { data }  = action;
+    const { pageIndex, pageSize, total } = data;
     return {
-      pageIndex: state.pageIndex+1,
-      list: data
+      pageIndex: state.pageIndex + 1,
+      hasMore: pageIndex * pageSize < total,
+      list: data['list']
     }
   }
 };

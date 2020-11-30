@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Icon } from 'antd-mobile';
 
-import * as homeAction from '@/store/action/home';
+import * as homeAction from '@/store/action/home.ts';
 import request from '@/untils/request';
 import API from '@/config/api';
 import Header from '@/components/Header';
@@ -15,10 +15,14 @@ let isFirst = 0;
 
 function Index(props) {
   const { 
-    list
+    list,
+    hasMore
   } = useSelector((state) => {
     return state.home
   });
+
+  const hasMoreRef = useRef()
+  hasMoreRef.current = hasMore;
 
   const dispath = useDispatch();
 
@@ -48,6 +52,28 @@ function Index(props) {
       sessionStorage.setItem('scrollTop', (document.body.scrollTop || document.documentElement.scrollTop) + '')
     }
   }, []);
+
+  useEffect(() => {
+    hasMoreRef.current = hasMore;
+    console.log(hasMore);
+  }, [hasMore])
+
+  useEffect(() => {
+    // 下拉加载更多
+    let isAjax = false;
+    $(window).scroll(async function() {
+      var scrollTop = $(this).scrollTop(),
+        scrollHeight = $(document).height(),
+        windowHeight = $(this).height();
+      var positionValue = scrollHeight - (scrollTop + windowHeight);
+      // 这里获取到的hasMore有问题，一直是初始值
+      if(positionValue<100&&!isAjax&&hasMoreRef.current) {
+        isAjax = true;
+        await dispath(homeAction.getList());
+        isAjax = false;
+      }
+    });
+  }, [])
   
   return (
     <div className='home-box'>
@@ -83,14 +109,19 @@ function Index(props) {
             </div>
           })
         }
-        <div className='loading'>
-          <Icon type='loading'></Icon>
-          <span>加载中...</span>
-        </div>
+        {<div>{hasMore}</div>}
+        {
+          hasMore ? <div className='loading' id='loading'>
+            <Icon type='loading'></Icon>
+            <span>加载中...</span>
+          </div> : <div className='no-more-data'>没有更多数据了</div>
+        }
       </div>
 
       {
-        showUpload && <Upload cancelHandle={() => {setShowUpload(false)}} successHanlde={homeAction.getList}></Upload>
+        showUpload && <Upload cancelHandle={() => {setShowUpload(false)}} successHanlde={() => {
+          dispath(homeAction.getList(1))
+        }}></Upload>
       }
     </div>
   )

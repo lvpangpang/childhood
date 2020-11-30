@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@types/jquery": "^3.5.4",
     "antd-mobile": "^2.3.4",
     "axios": "^0.20.0",
     "react": "^16.13.1",
