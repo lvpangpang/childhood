@@ -1,12 +1,10 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Icon } from 'antd-mobile';
 
 import * as homeAction from '@/store/action/home.ts';
-import request from '@/untils/request';
-import API from '@/config/api';
 import Header from '@/components/Header';
 import Upload from './Upload';
 import './index.less';
@@ -16,34 +14,24 @@ let isFirst = 0;
 function Index(props) {
   const { 
     list,
-    hasMore
+    hasMore,
+    userInfo
   } = useSelector((state) => {
     return state.home
   });
 
-  const hasMoreRef = useRef()
-  hasMoreRef.current = hasMore;
-
   const dispath = useDispatch();
 
-  const [baby, setBaby] = useState({});
+  const hasMoreRef = useRef();
+  hasMoreRef.current = hasMore;
+
   const [showUpload, setShowUpload] = useState(false);
 
-  const getData = useCallback(async() => {
-    const data = await request({
-      url: API.getUser,
-      params: {
-        userId: 1
-      }
-    });
-    setBaby(data);
-  }, []);
-
   useEffect(() => {
-    getData();
     if(isFirst===0) {
       isFirst=1;
       dispath(homeAction.getList())
+      dispath(homeAction.getUserInfo())
     } else {
       window.scrollTo(0, parseFloat(sessionStorage.getItem('scrollTop')));
     }
@@ -55,7 +43,6 @@ function Index(props) {
 
   useEffect(() => {
     hasMoreRef.current = hasMore;
-    console.log(hasMore);
   }, [hasMore])
 
   useEffect(() => {
@@ -66,7 +53,6 @@ function Index(props) {
         scrollHeight = $(document).height(),
         windowHeight = $(this).height();
       var positionValue = scrollHeight - (scrollTop + windowHeight);
-      // 这里获取到的hasMore有问题，一直是初始值
       if(positionValue<100&&!isAjax&&hasMoreRef.current) {
         isAjax = true;
         await dispath(homeAction.getList());
@@ -84,9 +70,9 @@ function Index(props) {
       ></Header>
       <div className='nav-box'>
         <div>
-          <div className='head-img'><img width='80' height='80' src={baby['head']} /></div>
+          <div className='head-img'><img width='80' height='80' src={userInfo['head']} /></div>
           <div className='nick-name'>
-            <div>{baby['name']}</div>
+            <div>{userInfo['name']}</div>
           </div>
         </div>
       </div>

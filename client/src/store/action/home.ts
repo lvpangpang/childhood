@@ -17,3 +17,15 @@ export function getList(index?: Number) {
     });
   }
 }
+
+export function getUserInfo() {
+  return async (dispatch, getSate) => {
+    const data = await request({
+      url: API.getUser
+    });
+    dispatch({
+      type: 'getUserInfo',
+      data
+    });
+  }
+}

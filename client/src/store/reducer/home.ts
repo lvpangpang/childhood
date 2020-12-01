@@ -2,17 +2,25 @@ const initialState = {
   pageIndex: 1,
   pageSize: 10,
   hasMore: true,
-  list: []
+  list: [],
+  userInfo: {}
 }
 
 const reducerMap = {
+  getUserInfo: function(state, action) {
+    const { data } = action;
+    return {
+      userInfo: data
+    };
+  },
   getList: (state, action) => {
+    const { list } = state;
     const  { data }  = action;
     const { pageIndex, pageSize, total } = data;
     return {
       pageIndex: state.pageIndex + 1,
       hasMore: pageIndex * pageSize < total,
-      list: data['list']
+      list: list.concat(data['list'])
     }
   }
 };
