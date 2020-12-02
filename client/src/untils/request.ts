@@ -12,6 +12,7 @@ export default function request(config) {
     url,
     data,
     params,
+    handleError=false
   } = config;
   return new Promise((reslove, reject) => {
     axios({
@@ -25,7 +26,7 @@ export default function request(config) {
       timeout: 10000
     }).then((data) => {
       const result = data.data;
-      const { code } = result;
+      const { code, msg } = result;
       // 正常业务
       if(code===0) {
         reslove(result.data);
@@ -33,12 +34,21 @@ export default function request(config) {
       } else if (code===10) {
         window.location.href = '/login';
       } else {
-        reject(result);
+        Toast.fail(msg);
+        if(handleError) {
+          reject(result);
+        }
       }
     }).catch((error) => {
-      const { msg } = error;
-      Toast.fail(msg||'服务端异常，请稍后再试');
-      reject(error);
+      const { message='' } = error;
+      if(message.includes('timeout')) {
+        Toast.fail('请求超时，请稍后再试');
+      } else {
+        Toast.fail('服务器异常，请稍后再试')
+      }
+      if(handleError) {
+        reject(error);
+      }
     })
   });
 }

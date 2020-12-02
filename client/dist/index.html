@@ -1,1 +1,16 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"><title>Document</title></head><body><div id="root"></div><script src="./js/vendors~main5aff1cef0d8ddcc96526.js"></script><script src="./js/index.js"></script></body></html>
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"><title>Document</title><script>(function(doc, win) {
+      var docEl = doc.documentElement,
+        resizeEvt = "orientationchange" in window ? "orientationchange" : "resize",
+        recalc = function() {
+            if (docEl.clientWidth > 750) {
+                docEl.style.fontSize = "100px";
+                doc.body.style.width = "750px";
+            } else {
+                var width = docEl.clientWidth / 7.5;
+                docEl.style.fontSize = width + "px";
+            }
+        };
+      if (!doc.addEventListener) return;
+      win.addEventListener(resizeEvt, recalc, false);
+      doc.addEventListener("DOMContentLoaded", recalc, false);
+    })(document, window);</script></head><body><div id="root"></div><script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script><script src="./js/vendors~main8bf8891431e7c5b33c36.js"></script><script src="./js/index.js"></script></body></html>

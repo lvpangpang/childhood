@@ -4,7 +4,7 @@ const isDev = /devcf.shandiantech.com/.test(HOST)
 const isProd = /cf.shandiantech.com/.test(HOST)
 
 const API_HOST_MAP = {
-  dev: 'http://192.168.2.66:3000',
+  dev: 'http://127.0.0.1:3000',
   prod: 'http://116.62.139.102:3000'
 }
 

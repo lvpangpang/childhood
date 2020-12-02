@@ -21,9 +21,8 @@ router.use('/', async (req, res, next) => {
   } else {
     res.json({
       code: 1,
-      data: {
-        msg: '用户名或者密码不正确'
-      }
+      data: null,
+      msg: '用户名或者密码不正确'
     });
   }
 });

@@ -9,7 +9,7 @@ import Auth from './auth';
 
 export default function Index() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.NODE_ENV === 'production' ? '/childhood' : '/'}>
       <Switch>
         <Auth config={RouterConfig}></Auth>
       </Switch>
