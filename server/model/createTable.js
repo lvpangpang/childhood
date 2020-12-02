@@ -1,12 +1,12 @@
 const { query } = require('../core/mysql.js');
 
 // 用户表
-query('CREATE TABLE user (userId INT NOT NULL auto_increment primary key, name VARCHAR(255), age INT(3), city VARCHAR(255))').then(() => {
+query('CREATE TABLE user (userId INT NOT NULL auto_increment primary key, name VARCHAR(255), age INT(3), city VARCHAR(255), pwd VARCHAR(255), head VARCHAR(255))').then(() => {
   console.log('创建user表成功');
 });
 
 // 日常记录表
-query('CREATE TABLE daily (dailyId INT NOT NULL auto_increment primary key, userId INT, createTime datetime,fileList VARCHAR(255), content VARCHAR(255)').then(() => {
+query('CREATE TABLE daily (dailyId INT NOT NULL auto_increment primary key, userId INT, createTime datetime,fileList VARCHAR(255), content VARCHAR(255))').then(() => {
   console.log('创建daily表成功');
 });
 

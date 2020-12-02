@@ -1,7 +1,4 @@
-const HOST = window.location.host;
-
-const isDev = /devcf.shandiantech.com/.test(HOST)
-const isProd = /cf.shandiantech.com/.test(HOST)
+const isProd = /116.62.139.102/.test(window.location.host)
 
 const API_HOST_MAP = {
   dev: 'http://127.0.0.1:3000',
@@ -9,9 +6,7 @@ const API_HOST_MAP = {
 }
 
 export default function() {
-  if (isDev) {
-    return API_HOST_MAP.dev
-  } else if(isProd){
+  if(isProd){
     return API_HOST_MAP.prod
   } else {
     return API_HOST_MAP.dev
