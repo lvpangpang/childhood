@@ -1,11 +1,11 @@
 const isPro = process.env.NODE_ENV === 'production';
 
 const MYSQLDEV = {
-  host: 'localhost',
+  host: '127.0.0.1',
   user: 'root',
   password: '123',
   database: 'childhood',
-  port: '3306'
+  port: 3306
 };
 
 const MYSQLPRO = {
