@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import {
   Switch,
   BrowserRouter
@@ -10,9 +10,11 @@ import Auth from './auth';
 export default function Index() {
   return (
     <BrowserRouter basename={process.env.NODE_ENV === 'production' ? '/childhood' : '/'}>
-      <Switch>
-        <Auth config={RouterConfig}></Auth>
-      </Switch>
+      <Suspense fallback={<div></div>}>
+        <Switch>
+          <Auth config={RouterConfig}></Auth>
+        </Switch>
+      </Suspense>
     </BrowserRouter>
   );
 }

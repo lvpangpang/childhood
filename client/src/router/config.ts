@@ -1,17 +1,17 @@
 import React from 'react';
 
-import Index from '@/pages/home';
-import Detail from '@/pages/detail';
-import Login from '@/pages/login';
+const Home = React.lazy(() => import('@/pages/home'));
+const Detail = React.lazy(() => import('@/pages/detail'));
+const Login = React.lazy(() => import('@/pages/login'));
 
 const RoutesConfig = [
   {
     path: '/', 
     auth: true,
-    component: Index
+    component: Home
   },
   {
-    path: '/detail', 
+    path: '/detail',
     auth: true,
     component: Detail
   },
