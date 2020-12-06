@@ -3,6 +3,12 @@ const app = express();
 
 const verToken = require('./core/token.js');
 
+
+// fundebug监控
+var fundebug = require("fundebug-nodejs");
+fundebug.apikey="dfafb17d7774b14515abed5be2901f802d9c6be69d465f561419291a7546adff";
+app.use(fundebug.ExpressErrorHandler);
+
 // 数据库
 require('./core/mysql.js');
 const bodyParse = require('./core/http.js');

@@ -20,7 +20,7 @@ const reducerMap = {
     return {
       pageIndex: state.pageIndex + 1,
       hasMore: pageIndex * pageSize < total,
-      list: list.concat(data['list'])
+      list: pageIndex === 1 ? data['list'] : list.concat(data['list'])
     }
   }
 };

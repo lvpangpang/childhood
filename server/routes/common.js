@@ -6,12 +6,14 @@ function handleRes(sql, res) {
       resolve(data);
     }).catch((err) => {
       res.json({
-        code: 500,
-        msg: err.sqlMessage
+        code: 123,
+        msg: err
       });
     })
   });
 };
+
+
 
 module.exports = {
   handleRes

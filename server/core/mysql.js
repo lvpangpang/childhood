@@ -2,28 +2,26 @@
 const mysql = require('mysql');
 const mysqlConfig = require('../config/mysql.js');
 
-const connection = mysql.createConnection(mysqlConfig);
-connection.connect(function(err) {
-	if (err) {
-		console.error('数据库连接失败: ' + err);
-		return;
-	}
-	console.log('数据库连接成功' + connection.threadId);
-});
+// 用连接池连接，否则部署到阿里云一段时间就会连接不上mysql
+const pool = mysql.createPool(mysqlConfig);
 
 function query(sql) {
   return new Promise((reslove, reject) => {
-    connection.query(sql, function (err, data) {
-      if (err) {
+    pool.getConnection((err, conn) => {
+      if(err) {
         reject(err);
-        return;
       }
-      reslove(data);
+      conn.query(sql, function (err, data) {
+        if (err) {
+          reject(err);
+        }
+        reslove(data);
+        conn.release();
+      });
     });
   });
 }
 
 module.exports = {
-  connection,
   query
 }
