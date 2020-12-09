@@ -81,7 +81,7 @@ function Index(props) {
           list.map((item) => {
             return <div className='file-item' key={item['dailyId']}>
               <div className='time'>{item['name']} {item['createTime']}</div>
-              <Link to='/detail'>
+              <Link to={`/detail?id=${item['dailyId']}`}>
                 <div className='img-con'>
                   {
                     item['fileList'].map((item1) => {

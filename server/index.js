@@ -14,6 +14,7 @@ const loginRoute = require('./routes/login.js');
 const userRoute = require('./routes/user.js');
 const uploadRoute = require('./routes/upload.js');
 const dailyRoute = require('./routes/daily.js');
+const commentRoute = require('./routes/comment.js');
 
 app.use(bodyParse.json);
 app.use(express.static('upload'));
@@ -62,6 +63,8 @@ app.use(function(req, res, next) {
 app.use('/user', userRoute);
 app.use('/file', uploadRoute);
 app.use('/daily', dailyRoute);
+app.use('/comment', commentRoute);
+
 
 app.listen(3000, () => {
   console.log('吕肥肥的小时光启动了');
