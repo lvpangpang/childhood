@@ -11,7 +11,7 @@ import Auth from './auth';
 export default function Index() {
   return (
     <Router history={history}>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<></>}>
         <Switch>
           <Auth config={RouterConfig}></Auth>
         </Switch>
