@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import { Toast } from 'antd-mobile';
 
+import history from '@/router/history';
 import DOMAIN from '@/config/apiDomain';
 
 axios.defaults.baseURL = DOMAIN();
@@ -32,7 +33,7 @@ export default function request(config) {
         reslove(result.data);
         // 未登录
       } else if (code===10) {
-        window.location.href = '/login';
+        history.replace('/login');
       } else {
         Toast.fail(msg);
         if(handleError) {
