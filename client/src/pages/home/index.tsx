@@ -65,7 +65,7 @@ function Index(props) {
     <div className='home-box'>
       <Header 
         title='小时光'
-        right={<div onClick={showUpload} className='custom-upload'></div>}
+        right={<div onClick={() => {setShowUpload(true)}} className='custom-upload'></div>}
         rightClick={() => {setShowUpload(true)}}
       ></Header>
       <div className='nav-box'>
@@ -78,14 +78,14 @@ function Index(props) {
       </div>
       <div className='content-box' id='contentBox'>
         {
-          list.map((item) => {
+          list && list.map((item) => {
             return <div className='file-item' key={item['dailyId']}>
               <div className='time'>{item['name']} {item['createTime']}</div>
               <Link to={`/detail?id=${item['dailyId']}`}>
                 <div className='img-con'>
                   {
-                    item['fileList'].map((item1) => {
-                      return <div className='img-item' key={item['url']}>
+                    item['fileList'] && item['fileList'].map((item1) => {
+                      return <div className='img-item' key={item1['url']}>
                         <img src={item1.url}></img>
                       </div>
                     })

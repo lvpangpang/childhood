@@ -12,8 +12,11 @@ function Index(props) {
   const [val, setVal] = useState('');
   const [loading, setLoading] = useState(false);
   const [showComment, setShowComment] = useState(false);
+  const [chooseComment, setChooseComment] = useState(null);
+
   const [details, setDetails] = useState(null);
   const [comment, setComment] = useState(null);
+
 
   const getDetails = useCallback(async () => {
     const data = await request({
@@ -33,11 +36,13 @@ function Index(props) {
       data: {
         dailyId: queryParams('id'),
         content: val,
-        parentId: null
+        parentId: chooseComment
       }
     });
     setLoading(false);
     setShowComment(false);
+    getComment();
+    setChooseComment(null);
   }, [val]);
 
   const getComment = useCallback(async () => {
@@ -83,7 +88,7 @@ function Index(props) {
                 <div className='head'><img src={item['head']} /></div>
                 <div className='name'>{item['name']}</div>
               </div>
-              <div className='content'>{item['content']}</div>
+              <div className='content' onClick={() => {setShowComment(true);setChooseComment(item['commentId'])}}>{item['content']}</div>
               <div className='son-box'>
                 {
                   item['son'] && item['son'].map((item1) => {

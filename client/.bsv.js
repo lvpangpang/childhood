@@ -1,4 +1,5 @@
 module.exports = {
-  port: 3001,
+  entry: '/src/index.tsx',
+  port: 8080,
   babelPlugins: ["import", { libraryName: "antd-mobile", "style": "css" }]
 };

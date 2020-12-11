@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 const express = require('express');
 const app = express();
 
@@ -17,6 +19,7 @@ const dailyRoute = require('./routes/daily.js');
 const commentRoute = require('./routes/comment.js');
 
 app.use(bodyParse.json);
+
 app.use(express.static('upload'));
 app.use(log);
 
@@ -67,5 +70,5 @@ app.use('/comment', commentRoute);
 
 
 app.listen(3000, () => {
-  console.log('吕肥肥的小时光启动了');
+  console.log('小时光启动成功');
 });
