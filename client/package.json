@@ -26,11 +26,13 @@
   "scripts": {
     "start": "bsv",
     "build": "bsv build",
-    "lint": "eslint --ext .js src"
+    "lint": "eslint --ext .js src",
+    "foo": "echo \"fooo\" && exit 0"
   },
   "author": "",
   "license": "ISC",
   "pre-commit": [
+    "foo",
     "lint"
   ]
 }
