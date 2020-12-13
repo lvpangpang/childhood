@@ -27,7 +27,7 @@
   "scripts": {
     "start": "bsv",
     "build": "bsv build",
-    "lint": "eslint --ext .ts --ext .tsx --ext .jsx --ext .js  src"
+    "lint": "eslint --ext .ts,.tsx,.jsx,.js  src/"
   },
   "author": "",
   "license": "ISC",
