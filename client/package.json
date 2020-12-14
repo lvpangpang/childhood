@@ -32,7 +32,7 @@
     "lint": "eslint --ext .ts,.tsx,js,jsx src/"
   },
   "lint-staged": {
-    "src/**/*.ts": [
+    "*": [
       "eslint",
       "git add"
     ]
