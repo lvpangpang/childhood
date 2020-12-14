@@ -5,7 +5,8 @@ import Router from '@/router';
 import store from '@/store';
 
 function App() {
-  let a 
+  let a
+  xon
   return(
     <Provider store={store}>
       <Router></Router>
