@@ -6,7 +6,7 @@ import store from '@/store';
 
 function App() {
   let a
-  xon
+  xon9978
   return(
     <Provider store={store}>
       <Router></Router>
