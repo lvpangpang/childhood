@@ -29,7 +29,8 @@
   },
   "scripts": {
     "start": "bsv",
-    "build": "bsv build"
+    "build": "bsv build",
+    "lint": "eslint --ext .ts,.tsx,js,jsx src/"
   },
   "husky": {
     "hooks": {
