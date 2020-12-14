@@ -5,8 +5,7 @@ import Router from '@/router';
 import store from '@/store';
 
 function App() {
-  let a
-  xon99789786786890908
+  console.log(abc);
   return(
     <Provider store={store}>
       <Router></Router>
