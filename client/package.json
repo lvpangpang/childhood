@@ -32,14 +32,14 @@
     "lint": "eslint --ext .ts,.tsx,js,jsx src/"
   },
   "lint-staged": {
-    "src/a.ts": [
+    "src/**/*.{js,jsx,ts,tsx}": [
       "eslint",
       "git add"
     ]
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": ""
     }
   }
 }
