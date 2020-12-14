@@ -28,12 +28,18 @@
   },
   "scripts": {
     "start": "bsv",
-    "build": "bsv build",
-    "lint": "eslint --ext .ts,.tsx,.jsx,.js src/"
+    "build": "bsv build"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint"
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    // 此处可以配置文件夹和文件类型的范围
+    "src/**/*.{jsx,tsx,ts,js}": [
+      "eslint", // 再使用eslint进行自动修复
+      "git add" // 所有通过的话执行git
+    ]
   }
 }
