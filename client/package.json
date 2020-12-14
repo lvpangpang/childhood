@@ -29,8 +29,11 @@
   "scripts": {
     "start": "bsv",
     "build": "bsv build",
-    "lint-staged": "lint-staged"
+    "lint": "eslint --ext .ts,.tsx,.jsx,.js src/"
   },
-  "husky": {},
-  "lint-staged": {}
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  }
 }
