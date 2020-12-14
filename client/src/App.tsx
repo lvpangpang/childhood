@@ -5,7 +5,7 @@ import Router from '@/router';
 import store from '@/store';
 
 function App() {
-  console.log(abc);
+  console.log(abc7897897897897);
   return(
     <Provider store={store}>
       <Router></Router>
