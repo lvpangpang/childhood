@@ -49,7 +49,7 @@ function Index(props) {
     // 下拉加载更多
     let isAjax = false;
     $(window).scroll(async function() {
-      var scrollTop = $(this).scrollTop(),
+      let scrollTop = $(this).scrollTop(),
         scrollHeight = $(document).height(),
         windowHeight = $(this).height();
       var positionValue = scrollHeight - (scrollTop + windowHeight);
@@ -82,6 +82,7 @@ function Index(props) {
             return <div className='file-item' key={item['dailyId']}>
               <div className='time'>{item['name']} {item['createTime']}</div>
               <Link to={`/detail?id=${item['dailyId']}`}>
+                <div className='mark-item'>{item['content']}</div>
                 <div className='img-con'>
                   {
                     item['fileList'] && item['fileList'].map((item1) => {

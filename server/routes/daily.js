@@ -13,8 +13,10 @@ function handleFileList(list, domain) {
 }
 
 router.use('/add', async (req, res, next) => {
-  const { fileList } = req.body;
-  const sql = `insert into daily(userId, fileList, content, createTime) values('${1}', '${fileList}', '', '${sd.format(Date.now())}')`;
+  const userInfo = req['userInfo'];
+  const { fileList, content } = req.body;
+  const { userId } = userInfo;
+  const sql = `insert into daily(userId, fileList, content, createTime) values('${userId}', '${fileList}', '${content}', '${sd.format(Date.now())}')`;
   const data = await handleRes(sql, res);
   res.json({
     code: 0,
@@ -28,7 +30,7 @@ router.use('/list', async (req, res, next) => {
     pageSize=10
   } = req.query;
   const domain = req['headers']['host'];
-  const sql = `select dailyId, name, fileList, createTime from daily inner join user on daily.userId = user.userId order by createTime desc limit ${(pageIndex-1) * pageSize}, ${pageSize}`;
+  const sql = `select dailyId, name, fileList, createTime, content from daily inner join user on daily.userId = user.userId order by createTime desc limit ${(pageIndex-1) * pageSize}, ${pageSize}`;
   const sqlCount = `select count(*) from daily`;
   const data = await handleRes(sql, res);
   const total = await handleRes(sqlCount, res);
