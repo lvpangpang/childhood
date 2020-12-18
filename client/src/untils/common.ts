@@ -7,4 +7,4 @@ export function queryParams(name: string) {
   let context = ''
   if (r !== null) context = r[2]
   return decodeURIComponent(context)
-};
+}

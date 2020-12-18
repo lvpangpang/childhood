@@ -6,7 +6,7 @@ function handleRes(sql, res) {
       resolve(data);
     }).catch((err) => {
       res.json({
-        code: 123,
+        code: 2004,
         msg: err
       });
     })

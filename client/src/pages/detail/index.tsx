@@ -8,7 +8,7 @@ import { queryParams } from '@/untils/common';
 import Header from '@/components/Header';
 import './index.less';
 
-function Index(props) {
+function Index():void {
   const [val, setVal] = useState('');
   const [loading, setLoading] = useState(false);
   const [showComment, setShowComment] = useState(false);
@@ -16,7 +16,6 @@ function Index(props) {
 
   const [details, setDetails] = useState(null);
   const [comment, setComment] = useState(null);
-
 
   const getDetails = useCallback(async () => {
     const data = await request({
@@ -92,7 +91,7 @@ function Index(props) {
               <div className='son-box'>
                 {
                   item['son'] && item['son'].map((item1) => {
-                    return <div className='son-item'>
+                    return <div className='son-item' key={item1['commentId']}>
                       <div className='user-info'>
                         <div className='name'>{item1['name']}</div>
                       </div>
