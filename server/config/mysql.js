@@ -11,7 +11,7 @@ const MYSQLDEV = {
 const MYSQLPRO = {
   host: '116.62.139.102',
   user: 'root',
-  password: '123456',
+  password: '',
   database: 'childhood',
   port: 3306
 };
